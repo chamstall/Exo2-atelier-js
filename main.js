@@ -26,13 +26,30 @@ let acceptData = () => {
     console.log(data);
     createPosts();
 };
+// creation de ma fonction qui me permet de créer une div avec les icones dans des span
 let createPosts = () => {
     posts.innerHTML += `<div> 
     <p>${data.text}</p>
     <span class="options">
-        <i class="fa-solid fa-pen-to-square"></i>
-        <i class="fa-solid fa-trash-can"></i>
+        <i onclick="editPost(this)" class="fa-solid fa-pen-to-square"></i>
+        <i onclick="deletePost(this)" class="fa-solid fa-trash-can"></i>
+        <button onclick="addBagroundColor(this)" type="button">terminer</button>
     </span>
     </div> `;
-    
 };
+// suppression de la tache
+let deletePost = (e) => {
+    e.parentElement.parentElement.remove();
+};
+
+// modification de la tache
+let editPost = (e) =>{
+    input.value = e.parentElement.previousElementSibling.innerHTML;
+    e.parentElement.parentElement.remove();
+}
+
+// ajout du bgc lorsqu'on appuit sur le bouton terminer
+let addBagroundColor = (e) =>{
+    e.parentElement.previousElementSibling.style.backgroundColor = "rgba(000,200,45,0.4)";
+}
+
